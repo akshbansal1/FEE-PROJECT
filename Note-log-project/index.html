@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A Simple Interactive Notes Web App where you can create and keep your special notes.">
+    <title>Nota | Share Your Special Notes</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS -->
+    <style>
+        /* ===================
+===== Default Configs
+====================== */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: #e66842;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.heading {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFF;
+    text-align: center;
+    margin: 20px auto;
+    background: #e66842;
+    padding: 20px;
+    max-width: 400px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    text-transform: capitalize;
+}
+
+.heading span {
+    color: #e66842;
+    background: #FFF;
+    /* padding: 10px; */
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    line-height: 60px;
+    font-size: 26px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+    display: none;
+}
+
+*::-webkit-scrollbar {
+    display: block;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #FFF;
+}
+
+/* ===================
+===== Wrapper
+====================== */
+
+ul.wrapper {
+    /* margin: 50px; */
+    padding: 30px 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 265px);
+    gap: 15px;
+    justify-content: center;
+}
+
+.wrapper>li {
+    background: #FFF;
+    height: 300px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 15px 20px 20px;
+}
+
+.add-box,
+.add-box .icon,
+.note-item .bottom-content,
+.settings .menu li,
+.popup-box .popup,
+.popup-box .popup .content header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-box {
+    justify-content: center;
+    flex-direction: column;
+}
+
+.add-box .icon {
+    justify-content: center;
+    height: 78px;
+    width: 78px;
+    border: 2px dashed #e66842;
+    font-size: 40px;
+    color: #e66842;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    cursor: pointer;
+}
+
+.add-box p {
+    /* font-size: 14px; */
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: #e66842;
+    margin-top: 20px;
+}
+
+.note-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.note-item p {
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    padding: 10px 0;
+    word-wrap: break-word;
+    height: 80px;
+    overflow-y: scroll;
+}
+
+.note-item span {
+    display: block;
+    font-size: 16px;
+    color: #575757;
+    padding-top: 15px;
+}
+
+.note-item .details span {
+    height: 150px;
+    overflow-y: scroll;
+    line-height: 1.5;
+    /* word-wrap: break-word; */
+}
+
+.note-item .details span::-webkit-scrollbar {
+    width: 1px;
+    background: transparent;
+    display: none;
+}
+
+.note-item .details span:hover::-webkit-scrollbar {
+    display: block;
+}
+
+.note-item .details span:hover::-webkit-scrollbar-thumb {
+    background: #e66842;
+}
+
+.note-item .bottom-content {
+    padding-top: 10px;
+    border-top: 1px solid #CCC;
+}
+
+.note-item .bottom-content span {
+    font-size: 14px;
+    color: #6d6d6d;
+}
+
+.note-item .bottom-content .settings i {
+    font-size: 15px;
+    color: #6d6d6d;
+    cursor: pointer;
+}
+
+.settings {
+    position: relative;
+}
+
+.settings .menu {
+    position: absolute;
+    bottom: 20px;
+    right: -5px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    padding: 5px 0px;
+    background: #FFF;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.2s ease;
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -ms-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+}
+
+.settings.show .menu {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+}
+
+.settings .menu li {
+    height: 25px;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 17px 15px;
+}
+
+.settings .menu li:hover {
+    background: #F5F5F5;
+}
+
+.settings .menu li i {
+    font-size: 15px;
+    color: #e66842 !important;
+}
+
+.popup-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+.popup-box .popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    z-index: 3;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+}
+
+.popup-box,
+.popup-box .popup {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity, visibility 0.25s ease;
+    -webkit-transition: opacity, visibility 0.25s ease;
+    -moz-transition: opacity, visibility 0.25s ease;
+    -ms-transition: opacity, visibility 0.25s ease;
+    -o-transition: opacity, visibility 0.25s ease;
+}
+
+.popup-box.show,
+.popup-box.show .popup {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popup-box .popup .content {
+    width: calc(100% - 15px);
+    background: #FFF;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.popup-box .popup .content header {
+    padding: 15px 25px;
+    border-bottom: 1px solid #CCC;
+}
+
+.popup-box .popup .content header p {
+    max-width: 200px;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #111
+}
+
+.popup-box .popup .content header i {
+    font-size: 23px;
+    cursor: pointer;
+    color: #8b8989;
+}
+
+.popup-box .popup .content form {
+    margin: 15px 25px 35px;
+}
+
+.popup-box .popup .content form .row {
+    margin-bottom: 20px;
+}
+
+.popup-box .popup .content form .row .message {
+    color: rgb(240, 59, 59);
+    /*box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    */
+    /*padding: 15px 10px;
+    */
+    font-weight: 600;
+    display: none;
+    transition: display 0.2s ease;
+    -webkit-transition: display 0.2s ease;
+    -moz-transition: display 0.2s ease;
+    -ms-transition: display 0.2s ease;
+    -o-transition: display 0.2s ease;
+    text-transform: capitalize;
+}
+
+.popup-box .popup .content form .row .message.show {
+    display: block;
+}
+
+.popup-box .popup .content form .row label {
+    display: block;
+    font-size: 18px;
+    color: #e66842;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+}
+
+.popup-box .popup .content form .row :where(input, textarea) {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 7px 15px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #333;
+    margin-bottom: 15px;
+    border: 1px solid #CCC;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+}
+
+.popup-box .popup .content form .row :where(input, textarea):focus {
+    border-color: #e66842;
+}
+
+.popup-box .popup .content form .row textarea {
+    resize: none;
+    height: 150px;
+    padding: 8px 15px;
+}
+
+.popup-box .popup .content form button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background: #e66842;
+    color: #FFF;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="popup-box">
+        <div class="popup">
+            <div class="content">
+                <header>
+                    <p>Create your special note</p>
+                    <i class="fa-solid fa-times"></i>
+                </header>
+                <form action="#">
+                    <div class="row message-box">
+                        <p class="message"></p>
+                    </div>
+                    <div class="row title">
+                        <label for="title">Title</label>
+                        <input type="text" maxlength="40" id="title" name="title" placeholder="Ex: Doctor Meeting">
+                    </div>
+                    <div class="row desc">
+                        <label for="desc">description</label>
+                        <textarea name="desc" id="desc"></textarea>
+                    </div>
+                    <button>Add note</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="heading"></h2>
+
+    <ul class="notes-container wrapper">
+        <li class="add-box">
+            <div class="icon">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <p>Add new note</p>
+        </li>
+    </ul>
+
+    <!-- JS -->
+    <script>
+        // ================= Declaring Variables =================
+
+const addBox = document.querySelector('.add-box'),
+    popupBox = document.querySelector('.popup-box'),
+    popupBoxClose = document.querySelector('.popup-box header i'),
+    title = document.getElementById('title'),
+    description = document.getElementById('desc'),
+    addNoteBtn = document.querySelector('.popup-box .content form button'),
+    message = document.querySelector('.message'),
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+
+    // ===== Getting local storage notes if exist and parsing them
+    // ===== to js object, else passing an empty array to notes
+    notes = JSON.parse(localStorage.getItem('notes') || "[]");
+
+let isUpdated = false, updateId; // ===== Boolean to check if the note is updated or not
+
+// ================= Methods =================
+
+let showNotes = () => {
+    // ===== Clearing the notes before adding new ones
+    document.querySelectorAll('.note-item').forEach(note => { note.remove(); });
+
+    // ===== Looping through notes array and adding each note to the DOM
+    notes.forEach((note, index) => {
+        let noteItem = document.createElement('li');
+        noteItem.classList.add('note-item');
+        noteItem.innerHTML = `
+        <div class="details">
+            <p>${note.title}</p>
+            <span>${note.description}</span>
+        </div>
+        <div class="bottom-content">
+            <span>${note.date}</span>
+            <div class="settings">
+                <i class="fa-solid fa-ellipsis" onclick="showMenu(this);"></i>
+                <ul class="menu">
+                    <li onclick="updateNote(${index}, '${note.title}', '${note.description}');">
+                        <i class="fa-solid fa-edit"></i>Edit
+                    </li>
+                    <li onclick="deleteNote(${index});">
+                        <i class="fa-solid fa-trash"></i>Delete
+                    </li>
+                </ul>
+            </div>
+        </div>
+        `;
+        // document.querySelector('.notes-container').insertAdjacentElement('beforeend', noteItem);
+        document.querySelector('.add-box').insertAdjacentElement('afterend', noteItem);
+    });
+}
+showNotes();
+
+let showNotesLength = () => {
+    document.querySelector('.heading').innerHTML = notes.length > 0 ? `You've <span>${notes.length}</span> notes` : 'No notes added yet';
+}
+showNotesLength();
+
+let showMenu = (el) => {
+    el.parentElement.classList.toggle('show');
+
+    // ===== Close Menu on Clicking on another one or outside of the menu
+    document.addEventListener('click', (e) => {
+        if (!el.parentElement.contains(e.target)) {
+            el.parentElement.classList.remove('show');
+        }
+    });
+}
+
+let deleteNote = (noteId) => {
+
+    let confirmDelete = confirm('Are you sure you want to delete this note?');
+
+    if (!confirmDelete) return;
+
+    notes.splice(noteId, 1); // ===== Removing the selected note from the notes array
+    localStorage.setItem('notes', JSON.stringify(notes)); // ===== Updating the local storage
+    showNotes(); // ===== Updating the notes on the DOM
+    showNotesLength(); // ===== Updating the notes length on the DOM
+}
+
+let updateNote = (noteId, oldTitle, oldDescription) => {
+    isUpdated = true;
+    updateId = noteId;
+    // ===== Showing the popup box
+    title.focus();
+    popupBox.classList.add('show');
+    document.body.style.cssText = 'overflow: hidden;';
+
+    addNoteBtn.innerHTML = 'Update Note';
+    document.querySelector('.popup-box header p').innerHTML = 'Update Your Note';
+
+    // ===== Setting the values of the note to be updated
+    title.value = oldTitle;
+    description.value = oldDescription;
+
+}
+
+// ================= Events =================
+
+addBox.addEventListener('click', () => {
+    document.body.style.cssText = 'overflow: hidden;';
+    title.focus();
+    popupBox.classList.add('show');
+});
+
+popupBoxClose.addEventListener('click', () => {
+    document.body.style.cssText = 'overflow: auto;';
+    isUpdated = false;
+
+    popupBox.classList.remove('show');
+    document.querySelector('.popup-box .content form').reset(); // Reset form
+
+    addNoteBtn.innerHTML = 'Add note';
+    document.querySelector('.popup-box header p').innerHTML = 'Create your special note';
+});
+
+addNoteBtn.addEventListener('click', e => {
+    e.preventDefault();
+    let noteTitle = title.value,
+        noteDesc = description.value;
+
+    if (noteTitle.trim().length > 0 && noteDesc.trim().length > 0) {
+        let dateObj = new Date(),
+            noteInfo = {
+                // date: months[(dateObj.getMonth())] + ' ' + dateObj.getDate() + ',' + dateObj.getFullYear(), //== Print date in format: July 12,2022
+                date: `${months[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`, //== Print date in format: July 12,2022
+                title: noteTitle,
+                description: noteDesc
+            };
+
+        if (!isUpdated) {
+            notes.push(noteInfo); // Add note to array
+        } else {
+            isUpdated = false;
+            notes[updateId] = noteInfo; // Update specified note in array
+        }
+
+        localStorage.setItem('notes', JSON.stringify(notes)); // Save notes to local storage
+        document.querySelector('.popup-box .content form').reset(); // Reset form
+        // document.forms[0].reset(); // Reset form
+        popupBox.classList.remove('show');
+        showNotes();
+        showNotesLength();
+        addNoteBtn.innerHTML = 'Add note';
+        document.querySelector('.popup-box header p').innerHTML = 'Create your special note';
+        document.body.style.cssText = 'overflow: auto;';
+
+    } else {
+        message.innerHTML = 'Please fill all fields';
+        message.classList.add('show');
+    }
+
+});
+    </script>
+</body>
+
+</html>

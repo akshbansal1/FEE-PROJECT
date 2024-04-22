@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align:center;
+  
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    background-image: url('11.jpeg');
+    background-attachment:fixed;
+   
+  
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+  }
+  .style{
+    padding:20px;
+    margin:0 auto;
+    
+    text-align:center;
+    width:50%;
+    position: absolute;
+    top:20px;
+    left:350px;
+  }
+
+  .box{
+   width:200px;
+   height:250px;
+   margin:20px;
+   padding:10px;
+   border:1px solid black;
+   float:right;
+  }
+  #box{
+    width:800px;
+    height:700px;
+    background-color:rgba(197, 175, 147,0.5);
+    position:absolute;
+   top:600px;
+   left:200px;
+   padding:10px;
+   margin-left: 135px;
+  
+  }
+#signup-container,#login-container{background-color:rgba(197, 175, 147,0.5);
+  width:300px;
+  height:400px;
+}
+#signup-form,#login-form{
+  padding:120px 65px;
+}
+#sign{
+  position:absolute;
+  top:400px;
+  left:500px;
+  margin-top: 75px;
+  margin-left: 120px;
+}
+.heading {
+  margin-left: 138px;
+  margin-top: 75px;
+}
+  </style>
+  <title>Login and Signup</title>
+</head>
+<body>
+  <div class="style"><h1>
+  The simplest way to keep notes</h1> </div>
+
+  <div id="login-container">
+    <div style="position:absolute;top:150px;left:590px"><h2 class="heading">Login</h2></div>
+    <form id="login-form">
+      <label for="login-username">Username:</label>
+      <input type="text" id="login-username" required>
+
+      <label for="login-password">Password:</label>
+      <input type="password" id="login-password" required>
+
+      <button type="button" onclick="login()">Login</button>
+    </form>
+    <p id="sign">Don't have an account? <a href="#" onclick="showSignup()">Sign up here</a>.</p>
+
+  </div>
+
+  <div id="signup-container" style="display: none;">
+    <div style="position:absolute;top:150px;left:580px"><h2 class="heading">Sign Up</h2></div>
+    <form id="signup-form">
+      <label for="signup-username">Username:</label>
+      <input type="text" id="signup-username" required>
+
+      <label for="signup-password">Password:</label>
+      <input type="password" id="signup-password" required>
+
+      <button type="button" onclick="signup()">Sign Up</button>
+    </form>
+   
+
+  </div><br>
+  <div id="box">
+
+  <div class="box"> 
+  <h3>Use it everywhere</h3>
+  <p>stay updated across all your devices, automatically and in real time. There’s no “sync” button: It just works.</p>
+  </div>
+
+  <div class="box">
+    <h3>Stay organized</h3>
+    <p>Add tags to find notes quickly with instant searching.</p>
+  </div>
+
+  <div class="box">
+    <h3>Work together</h3>
+    <p>Share a to-do list, post some instructions, or publish your notes online.</p>
+  </div>
+
+  <div class="box">
+    <h3>Go back in time</h3>
+    <p>Notes are backed up with every change, so you can see what you noted last week or last month.</p>
+  </div>
+
+  <div class="box">
+    <h3>Markdown support</h3>
+    <p>Write, preview, and publish your notes in Markdown format.</p>
+  </div>
+
+  <div class="box">
+    <h3>It’s free</h3>
+    <p>Apps, backups, syncing, sharing – it’s all completely free.
+    </p>
+  </div>
+
+  </div>
+<script>
+    function login() {
+    var username = document.getElementById('login-username').value;
+    var password = document.getElementById('login-password').value;
+
+    // Retrieve user details from localStorage
+    var storedUsername = localStorage.getItem('username');
+    var storedPassword = localStorage.getItem('password');
+
+    // Check if username and password are valid
+    if (username === storedUsername && password === storedPassword) {
+      alert("Login successful!");
+      window.location.href="index.html";
+      
+    } else {
+      alert("Invalid username or password. Please try again.");
+    }
+  }
+
+  function signup() {
+    var username = document.getElementById('signup-username').value;
+    var password = document.getElementById('signup-password').value;
+
+    // Store user details in localStorage
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
+    alert("Sign up successful! You can now login with your credentials.");
+
+    // Switch to the login form
+    document.getElementById('login-container').style.display = 'flex';
+    document.getElementById('signup-container').style.display = 'none';
+  }
+
+
+
+
+
+  function showSignup() {
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('signup-container').style.display = 'flex';
+  }
+</script>
+  
+
+</body>
+</html>

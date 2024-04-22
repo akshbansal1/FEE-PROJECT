@@ -1,0 +1,613 @@
+0<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+:root {
+    --primary-text-color: #183b56;
+    --secondary-text-color: #577592;
+    --accent-color: #2294ed;
+    --accent-color-dark: #1d69a3;
+    --padding-inline-section: 20px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-text-color);
+    background-color: peachpuff;
+
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    color: var(--secondary-text-color);
+    line-height: 1.8rem;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+}
+
+
+.small-bold-text {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: var(--padding-inline-section);
+}
+
+.flex {
+    display: flex;
+    text-align: center;
+}
+
+
+/* top-banner */
+
+.top-banner {
+    background-color: pink;
+    background-image: url("IMAGES/green\ task.png");
+    background-size: 290px;
+    background-size: cover;
+}
+
+.banner-text {
+    color: rgb(255, 255, 255);
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 25px;
+    /* text-shadow: 0px 0px 15px black; */
+
+}
+
+/* NAVIGATION BAR */
+
+.main-nav {
+    margin-top: 20px;
+    justify-content: space-between;
+
+}
+
+.hover-links {
+    color: var(--primary-text-color);
+    transition: 0.2s ease-out;
+    margin-top: 15px;
+
+
+}
+
+.hover-links:hover {
+    color: var(--accent-color);
+}
+
+.primary-button {
+    background-color: var(--accent-color);
+    border-radius: 6px;
+    font-weight: 700;
+    color: white !important;
+    padding: 12px 24px;
+    box-shadow: 0 0 2px var(--secondary-text-color);
+    transition: 0.2s ease-out;
+    text-align: center;
+}
+
+.primary-button:hover {
+    background-color: var(--accent-color-dark);
+}
+
+.secondary-button {
+    border: 0.5px solid var(--secondary-text-color);
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--primary-text-color) !important;
+    padding: 12px 24px;
+    transition: 0.2s ease-out;
+}
+
+.secondary-button:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color) !important;
+}
+
+
+
+.nav-links ul {
+    gap: 40px;
+}
+
+
+
+/* HEADER SECTION */
+
+header {
+    padding: 50px var(--padding-inline-section) 0;
+    margin-bottom: 20px;
+}
+
+.header-section {
+    justify-content: center;
+    gap: 100px;
+}
+
+.header-left {
+    max-width: 40vw;
+    padding-top: 150px;
+}
+
+.header-left h1 {
+    margin-top: 20px;
+}
+
+
+/* EXAMPLES SECTION */
+.examples-header {
+    margin: 50px;
+    margin-left: 311px;
+}
+
+.examples-area {
+    justify-content: space-between;
+}
+
+.examples-card {
+    width: 100px;
+    position: relative;
+    height: 182px;
+    background: black;
+    background: linear-gradient(rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)), url("IMAGES/background\ image\ gallery.jpg");
+    background-size: cover;
+    border-radius: 20px;
+    filter: drop-shadow(30px 10px 4px #f4b071);
+
+}
+
+/* .examples-card:hover{
+    height: 310px;
+    width:24%
+} */
+
+.card-text {
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+    right: 20px;
+    color: white;
+}
+
+.card-text:hover {
+    color: aquamarine;
+}
+
+/* big features section */
+
+.big-feature-section {
+    padding: 30px var(--padding-inline-section) 0;
+    background-color: cadetblue;
+    background: linear-gradient(rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)), url("IMAGES/peach\ background.jpg");
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+
+
+
+    height: 400px;
+}
+
+
+.feature-desc {
+    flex-direction: column;
+    align-items: flex-start;
+    color: maroon;
+    text-shadow: 0px 0px 15px wheat;
+}
+
+
+
+
+
+/* subfooter */
+
+.subfooter {
+    background-color: #b9cde4;
+    padding: var(--padding-inline-section);
+    margin-top: 50px;
+}
+
+.subfooter-container {
+    justify-content: center;
+    gap: 30px;
+
+}
+
+.country-button {
+    border: 0.5px solid var(--secondary-text-color);
+    border-radius: 15px;
+    font-weight: 700;
+    color: var(--primary-text-color) !important;
+    padding: 12px 24px;
+    transition: 0.2s ease-out;
+    background-color: #ebf2fa;
+    margin-top: 8px;
+
+}
+
+@media (max-width:300px) {
+    .top-banner {
+        display: block;
+        color: green;
+    }
+}
+
+#VideoMO {
+    width: 1000px;
+    height: 260px;
+
+}
+.chill {
+    height: 180px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 800px;
+    width: 90%;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.chill {
+    height: 180px;
+}
+.popup-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #2c3e50;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    color: #ecf0f1;
+}
+
+.popup-header {
+    background-color: #3498db;
+    padding: 15px;
+    text-align: center;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+.popup-content {
+    padding: 20px;
+}
+
+.popup-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #34495e;
+    border-radius: 5px;
+}
+
+.popup-card h3 {
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.popup-card p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #ecf0f1;
+}
+
+.popup-card ul,
+.popup-card ol {
+    list-style-type: none;
+    margin-left: 0;
+    color: #ecf0f1;
+    padding-left: 20px;
+}
+
+.popup-card ol {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.popup-card a {
+    color: #3498db;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.popup-card a i {
+    margin-right: 5px;
+}
+
+.key-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.key-features-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.key-features-item i {
+    font-size: 1.2em;
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.key-features-item p {
+    margin: 0;
+    color: #ecf0f1;
+}
+
+/* Subfooter Styling */
+.subfooter {
+    background-color: #2c3e50;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.subfooter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hover-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.fa-brands {
+    font-size: 24px;
+    margin-left: 10px;
+    color: #ecf0f1;
+}
+    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- TOP BANNER -->
+    <div class="top-banner">
+        <div class="container">
+            <div class="small-bold-text banner-text">Write And Work </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <div class="container main-nav flex">
+            <a href="#" class="website-logo">
+                <h2 style="font-family: cursive; color: blueviolet;">Note Log</h2>
+            </a>
+            <div class="nav-links">
+                <ul class="flex">
+                    <li><a href="homepage.html" class="hover-links">Home</a></li>
+                    <li><a href="#" class="hover-links" onclick="openAboutPopup()">About</a></li>
+                    <li><a href="login.html" class="secondary-button">Sign in</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container header-section flex">
+            <div class="header-left">
+                <h2>We’ll take you there</h2>
+                <p>Start managing your task in a click</p><br>
+            </div>
+            <div class="header-right">
+                <img src="man.jpeg" height="650px">
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- BIG FEATURE SECTION -->
+
+    <section class="big-feature-section">
+        <div class="container flex big-feature-container">
+            <div class="feature-img">
+
+            </div>
+            <div class="feature-desc flex" id="big-feature-first">
+                <h2>Have a view over Task Manegement</h2>
+                <a href="https://youtu.be/QZUQvIf301Y?si=is8leaI1rYpz17Ok" class="country-button">Click to know</a>
+                <video controls src="video.mp4" id="VideoMO"></video>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXAMPLES SECTION -->
+
+
+    <section class="examples-section">
+        <div class="container">
+            <div class="examples-header flex">
+                <center>
+                    <h2 class="examples-heading-text">Perfect Playlist For Your Task</h2>
+                </center>
+
+            </div>
+            <div class="examples-area flex">
+
+                <a href="https://open.spotify.com/playlist/37i9dQZF1DX8Uebhn9wzrS?si=5f7f6a46fafd477a"
+                    class="examples-card">
+                    <!-- <h3 class="card-text">Chill Lofi Study Beat</h3> -->
+                    <img src="chill.jpg" class="chill">
+                </a>
+
+
+                <a href="https://open.spotify.com/playlist/37i9dQZF1DWZeKCadgRdKQ?si=3db71d9703c0432b"
+                    class="examples-card"
+                    style="background:linear-gradient(rgb(0,0,0,0.1),rgb(0,0,0,0.8)),url(IMAGES/user\ feedback.jpg);background-size: cover">
+                    <!-- <h3 class="card-text">Deep Focus</h3> -->
+                    <img src="focus.jpg">
+                </a>
+
+                <a href="https://open.spotify.com/playlist/37i9dQZF1DX9sIqqvKsjG8?si=06be72f90bef4cc3"
+                    class="examples-card"
+                    style="background:linear-gradient(rgb(0,0,0,0.1),rgb(0,0,0,0.8)),url(IMAGES/HOTELS.jpeg);background-size: cover">
+                    <!-- <h3 class="card-text">Instrumental Study</h3> -->
+                    <img src="study.jpg">
+                </a>
+
+                <a href="https://open.spotify.com/playlist/37i9dQZF1DX3SiCzCxMDOH?si=dca172cf8ace410c"
+                    class="examples-card"
+                    style="background:linear-gradient(rgb(0,0,0,0.1),rgb(0,0,0,0.8)),url(IMAGES/TRAVEL\ DIARY.jpg);background-size: cover">
+                    <!-- <h3 class="card-text">Jazz For Study</h3> -->
+                    <img src="jazz.jpg">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUB FOOTER  -->
+    <div class="subfooter">
+        <div class="container flex subfooter-container">
+            <a class="hover-link" href="#">Privacy policy</a>
+            <a class="hover-link" href="#">Terms & Condition</a>
+        </div>
+    </div>
+
+   <!-- ABOUT SECTION POPUP CONTENT -->
+   <div id="aboutPopup" class="popup-container" style="display: none;">
+    <div class="popup-header">
+        <h2>About Note Log</h2>
+    </div>
+
+    <div class="popup-content">
+        <div class="popup-card">
+            <h3><i class="fas fa-info-circle"></i> Welcome to Note Log</h3>
+            <p>
+                Note Log is your all-in-one solution for efficient task management and seamless note-taking. Elevate your productivity with our feature-rich platform designed to adapt to your unique needs.
+            </p>
+        </div>
+
+        <div class="popup-card">
+            <h3><i class="fas fa-bullseye"></i> Our Vision</h3>
+            <p>
+                At Note Log, we envision a world where organization and creativity coexist harmoniously. Our platform is a manifestation of this vision, providing users with a versatile tool to manage tasks and capture thoughts effortlessly.
+            </p>
+        </div>
+
+        <div class="popup-card">
+            <h3><i class="fas fa-star"></i> Key Features</h3>
+            <ul class="key-features-list">
+                <li class="key-features-item">
+                    <i class="fas fa-tasks"></i>
+                    <p>Task Management: Plan and organize your tasks with ease. Set priorities, due dates, and never miss a deadline.</p>
+                </li>
+                <li class="key-features-item">
+                    <i class="fas fa-sticky-note"></i>
+                    <p>Note-Taking: Immerse yourself in a robust note-taking experience. Create, edit, and organize your thoughts with rich text formatting.</p>
+                </li>
+                <li class="key-features-item">
+                    <i class="fas fa-desktop"></i>
+                    <p>User-Friendly Interface: Enjoy a clean and intuitive design that ensures a seamless user experience. No steep learning curve!</p>
+                </li>
+                <li class="key-features-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <p>Customization: Tailor Note Log to your liking. Choose from a variety of themes, layouts, and personalization options to make it truly yours.</p>
+                </li>
+                <li class="key-features-item">
+                    <i class="fas fa-users"></i>
+                    <p>Collaboration: Boost teamwork by sharing notes and tasks with colleagues or friends. Collaborate in real-time and stay in sync.</p>
+                </li>
+            </ul>
+        </div>
+        <!-- Add more sections as needed -->
+
+        <!-- Contact Us Section -->
+        <div class="popup-card">
+            <h3><i class="fas fa-envelope"></i> Contact Us</h3>
+            <p>
+                We value your feedback and suggestions. If you have any questions or need assistance, feel free to reach out to us at <a href="mailto:info@notelog.com"><i class="fas fa-at"></i> info@notelog.com</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openAboutPopup() {
+        var aboutPopupWindow = window.open("", "About Note Log", "width=800,height=600");
+        aboutPopupWindow.document.write('<link rel="stylesheet" type="text/css" href="homepage.css">');
+        aboutPopupWindow.document.write(document.getElementById("aboutPopup").innerHTML);
+    }
+</script>
+
+</body>
+
+</html>     
